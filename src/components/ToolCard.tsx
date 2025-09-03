@@ -1,6 +1,7 @@
 import { ExternalLink, Star, Users, Clock } from "lucide-react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
+import { Link } from "react-router-dom";
 
 interface ToolCardProps {
   tool: {
@@ -20,7 +21,7 @@ interface ToolCardProps {
 
 const ToolCard = ({ tool }: ToolCardProps) => {
   return (
-    <div className="tool-card group">
+    <Link to={`/tools/${tool.id}`} className="tool-card group block">
       {/* Tool Header */}
       <div className="flex items-start space-x-4 mb-4">
         <div className="h-12 w-12 rounded-xl bg-gradient-to-r from-primary/20 to-primary/10 flex items-center justify-center flex-shrink-0">
@@ -80,14 +81,29 @@ const ToolCard = ({ tool }: ToolCardProps) => {
 
       {/* Actions */}
       <div className="flex space-x-2">
-        <Button className="flex-1 btn-hero" size="sm">
+        <Button 
+          className="flex-1 btn-hero" 
+          size="sm"
+          onClick={(e) => {
+            e.preventDefault();
+            // Handle trial signup
+          }}
+        >
           Start Free Trial
         </Button>
-        <Button variant="outline" size="sm" className="btn-secondary-hero">
+        <Button 
+          variant="outline" 
+          size="sm" 
+          className="btn-secondary-hero"
+          onClick={(e) => {
+            e.preventDefault();
+            window.open(tool.website, '_blank');
+          }}
+        >
           <ExternalLink className="h-4 w-4" />
         </Button>
       </div>
-    </div>
+    </Link>
   );
 };
 
