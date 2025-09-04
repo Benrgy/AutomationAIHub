@@ -22,7 +22,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        <BrowserRouter basename="/AutomationAIHub">
           <SEOWrapper>
             <Routes>
               <Route path="/" element={<Index />} />
