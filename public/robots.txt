@@ -12,3 +12,11 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+# Sitemap
+Sitemap: https://automationaihub.com/sitemap.xml
+
+# Block sensitive areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*.json$

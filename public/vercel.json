@@ -1,0 +1,32 @@
+{
+  "rewrites": [
+    {
+      "source": "/tools",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/tools/(.*)",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/categories",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blog",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/resources",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/submit",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
