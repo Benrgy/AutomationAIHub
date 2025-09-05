@@ -1,32 +1,32 @@
 {
   "rewrites": [
     {
-      "source": "/tools",
-      "destination": "/index.html"
+      "source": "/AutomationAIHub/tools",
+      "destination": "/AutomationAIHub/index.html"
     },
     {
-      "source": "/tools/(.*)",
-      "destination": "/index.html"
+      "source": "/AutomationAIHub/tools/(.*)",
+      "destination": "/AutomationAIHub/index.html"
     },
     {
-      "source": "/categories",
-      "destination": "/index.html"
+      "source": "/AutomationAIHub/categories",
+      "destination": "/AutomationAIHub/index.html"
     },
     {
-      "source": "/blog",
-      "destination": "/index.html"
+      "source": "/AutomationAIHub/blog",
+      "destination": "/AutomationAIHub/index.html"
     },
     {
-      "source": "/resources",
-      "destination": "/index.html"
+      "source": "/AutomationAIHub/resources",
+      "destination": "/AutomationAIHub/index.html"
     },
     {
-      "source": "/submit",
-      "destination": "/index.html"
+      "source": "/AutomationAIHub/submit",
+      "destination": "/AutomationAIHub/index.html"
     },
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "source": "/AutomationAIHub/(.*)",
+      "destination": "/AutomationAIHub/index.html"
     }
   ]
 }

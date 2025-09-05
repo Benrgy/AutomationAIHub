@@ -1,5 +1,5 @@
 # SPA fallback for Netlify
-/*    /index.html   200
+/*    /AutomationAIHub/index.html   200
 
 # Specific routes with proper status codes
 /tools /index.html 200
