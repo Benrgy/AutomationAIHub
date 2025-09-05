@@ -14,7 +14,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://automationaihub.com/sitemap.xml
+Sitemap: https://benrgy.github.io/AutomationAIHub/sitemap.xml
 
 # Block sensitive areas
 Disallow: /admin/

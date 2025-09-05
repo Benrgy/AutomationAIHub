@@ -31,7 +31,7 @@ const Index = () => {
           
           <div className="text-center mt-12">
             <a 
-              href="/tools" 
+              href="/AutomationAIHub/tools" 
               className="btn-hero inline-flex items-center px-8 py-4 text-lg font-semibold rounded-lg transition-all hover:transform hover:-translate-y-1"
             >
               View All 200+ Tools
