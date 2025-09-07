@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { seoConfigs, getDefaultSEO, getToolSEO } from "@/utils/seoConfig";
 import { useEffect } from "react";
@@ -25,6 +25,17 @@ const mockToolData: Record<string, { name: string; description: string; category
 export const SEOWrapper = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const params = useParams();
+  const navigate = useNavigate();
+  
+  // Handle GitHub Pages SPA redirects from 404.html
+  useEffect(() => {
+    const redirectPath = sessionStorage.getItem('redirect');
+    if (redirectPath) {
+      console.log('SEOWrapper: Handling redirect to:', redirectPath);
+      sessionStorage.removeItem('redirect');
+      navigate(redirectPath, { replace: true });
+    }
+  }, [navigate]);
   
   const getSEOConfig = () => {
     // Handle dynamic tool pages

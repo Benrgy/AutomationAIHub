@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { SEOWrapper } from "./components/SEOWrapper";
+import { RedirectHandler } from "./components/RedirectHandler";
 import Index from "./pages/Index";
 import Tools from "./pages/Tools";
 import ToolDetail from "./pages/ToolDetail";
@@ -23,6 +24,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter basename="/AutomationAIHub">
+          <RedirectHandler />
           <SEOWrapper>
             <Routes>
               <Route path="/" element={<Index />} />

@@ -5,10 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page Not Found - AutomationAIHub</title>
     <script>
-      // GitHub Pages SPA fallback
-      sessionStorage.redirect = location.href;
+      // GitHub Pages SPA fallback - preserve full URL path
+      console.log('404.html: Redirecting from', location.href);
+      
+      // Store the full path for React Router to handle
+      var path = location.pathname.split('/').slice(2).join('/'); // Remove /AutomationAIHub/
+      var query = location.search;
+      var hash = location.hash;
+      
+      if (path) {
+        sessionStorage.setItem('redirect', '/' + path + query + hash);
+        console.log('404.html: Stored redirect path:', '/' + path + query + hash);
+      }
+      
+      // Redirect to the base app URL
+      location.replace('/AutomationAIHub/');
     </script>
-    <meta http-equiv="refresh" content="0;URL='/AutomationAIHub/'">
   </head>
   <body>
     <p>Redirecting...</p>

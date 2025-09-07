@@ -23,8 +23,19 @@ jobs:
     - name: Build
       run: npm run build
       
-    - name: Verify build output
-      run: ls -la dist/
+    - name: Verify build output structure
+      run: |
+        echo "=== Dist folder contents ==="
+        ls -la dist/
+        echo "=== index.html content (first 50 lines) ==="
+        head -50 dist/index.html || echo "index.html not found"
+        echo "=== JavaScript assets ==="
+        find dist/ -name "*.js" -type f || echo "No JS files found"
+        echo "=== CSS assets ==="
+        find dist/ -name "*.css" -type f || echo "No CSS files found"
+        echo "=== Checking for critical files ==="
+        test -f dist/index.html && echo "✅ index.html exists" || echo "❌ index.html missing"
+        test -f dist/404.html && echo "✅ 404.html exists" || echo "❌ 404.html missing"
 
     - name: Setup Pages
       uses: actions/configure-pages@v4
