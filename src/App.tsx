@@ -17,13 +17,27 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+// Detect deployment environment for basename
+const getBasename = () => {
+  // Check if we're on Netlify (automation-ai-hub.netlify.app)
+  if (window.location.hostname.includes('netlify.app')) {
+    return undefined; // No basename for root deployment
+  }
+  // Check if we're on GitHub Pages (benrgy.github.io)
+  if (window.location.hostname.includes('github.io')) {
+    return '/AutomationAIHub';
+  }
+  // Development or other environments
+  return import.meta.env.BASE_URL === '/' ? undefined : '/AutomationAIHub';
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <HelmetProvider>
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter basename="/AutomationAIHub">
+        <BrowserRouter basename={getBasename()}>
           <RedirectHandler />
           <SEOWrapper>
             <Routes>

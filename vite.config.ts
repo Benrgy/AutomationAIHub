@@ -4,8 +4,16 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-  base: mode === 'production' ? '/AutomationAIHub/' : '/',
+export default defineConfig(({ mode }) => {
+  // Detect deployment environment - Netlify sets NETLIFY env var
+  const isNetlify = process.env.NETLIFY === 'true';
+  const isGitHubPages = process.env.GITHUB_ACTIONS === 'true' || (!isNetlify && mode === 'production');
+  
+  // Set base path based on deployment platform
+  const base = isNetlify ? '/' : (isGitHubPages ? '/AutomationAIHub/' : '/');
+  
+  return {
+  base,
   server: {
     host: "::",
     port: 8080,
@@ -20,4 +28,4 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-}));
+}});

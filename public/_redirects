@@ -1,7 +1,7 @@
-# SPA fallback for Netlify
-/*    /AutomationAIHub/index.html   200
+# SPA fallback for Netlify (root domain deployment)
+/*    /index.html   200
 
-# Specific routes with proper status codes
+# Specific routes with proper status codes for root deployment
 /tools /index.html 200
 /tools/* /index.html 200
 /categories /index.html 200
