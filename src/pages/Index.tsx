@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Navigation from "../components/Navigation";
 import HeroSection from "../components/HeroSection";
 import SearchSection from "../components/SearchSection";
@@ -30,12 +31,12 @@ const Index = () => {
           <ToolGrid category={activeCategory} />
           
           <div className="text-center mt-12">
-            <a 
-              href="/AutomationAIHub/tools" 
+            <Link 
+              to="/tools" 
               className="btn-hero inline-flex items-center px-8 py-4 text-lg font-semibold rounded-lg transition-all hover:transform hover:-translate-y-1"
             >
               View All 200+ Tools
-            </a>
+            </Link>
           </div>
         </div>
       </section>
