@@ -64,12 +64,12 @@ export const SEOWrapper = ({ children }: { children: React.ReactNode }) => {
         <meta name="description" content={seoConfig.description} />
         <meta name="keywords" content={seoConfig.keywords} />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href={`https://benrgy.github.io/AutomationAIHub${location.pathname}`} />
+        <link rel="canonical" href={`https://automationaihub.com${location.pathname}`} />
         
         {/* Open Graph */}
         <meta property="og:title" content={seoConfig.ogTitle} />
         <meta property="og:description" content={seoConfig.ogDescription} />
-        <meta property="og:url" content={`https://benrgy.github.io/AutomationAIHub${location.pathname}`} />
+        <meta property="og:url" content={`https://automationaihub.com${location.pathname}`} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://automationaihub.com/og-image.png" />
         <meta property="og:site_name" content="AutomationAIHub" />
