@@ -1,5 +1,6 @@
 import { Star, CheckCircle, Zap, Target, Flame } from "lucide-react";
 import { Button } from "./ui/button";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -50,10 +51,25 @@ const HeroSection = () => {
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <Button className="btn-hero text-lg px-8 py-4">
-            Start Saving Time Today
-          </Button>
-          <Button className="btn-secondary-hero text-lg px-8 py-4">
+          <Link to="/tools">
+            <Button className="btn-hero text-lg px-8 py-4">
+              Start Saving Time Today
+            </Button>
+          </Link>
+          <Button 
+            className="btn-secondary-hero text-lg px-8 py-4"
+            onClick={() => {
+              const featuredSection = document.querySelector('section');
+              const offset = 80; // Account for fixed header
+              const elementPosition = featuredSection?.getBoundingClientRect().top ?? 0;
+              const offsetPosition = elementPosition + window.pageYOffset - offset;
+              
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+              });
+            }}
+          >
             See How It Works
           </Button>
         </div>
