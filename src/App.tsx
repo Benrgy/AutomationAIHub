@@ -14,6 +14,9 @@ import Resources from "./pages/Resources";
 import SubmitTool from "./pages/SubmitTool";
 import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
+import Auth from "./pages/Auth";
+import BlogAdmin from "./pages/BlogAdmin";
+import BlogDetail from "./pages/BlogDetail";
 
 const queryClient = new QueryClient();
 
@@ -48,6 +51,9 @@ const App = () => (
               <Route path="/resources" element={<Resources />} />
               <Route path="/submit" element={<SubmitTool />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogDetail />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/admin" element={<BlogAdmin />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

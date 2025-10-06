@@ -42,12 +42,16 @@ const Navigation = () => {
             <Button variant="ghost" size="icon">
               <Search className="h-5 w-5" />
             </Button>
-            <Button variant="outline">
-              Login
-            </Button>
-            <Button className="btn-hero">
-              Admin
-            </Button>
+            <Link to="/auth">
+              <Button variant="outline">
+                Login
+              </Button>
+            </Link>
+            <Link to="/admin">
+              <Button className="btn-hero">
+                Admin
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -101,12 +105,16 @@ const Navigation = () => {
                 Submit Tool
               </Link>
               <div className="flex space-x-2 pt-4">
-                <Button variant="outline" className="flex-1">
-                  Login
-                </Button>
-                <Button className="btn-hero flex-1">
-                  Admin
-                </Button>
+                <Link to="/auth" className="flex-1">
+                  <Button variant="outline" className="w-full">
+                    Login
+                  </Button>
+                </Link>
+                <Link to="/admin" className="flex-1">
+                  <Button className="btn-hero w-full">
+                    Admin
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

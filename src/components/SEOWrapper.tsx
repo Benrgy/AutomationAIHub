@@ -1,7 +1,20 @@
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { seoConfigs, getDefaultSEO, getToolSEO } from "@/utils/seoConfig";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+
+interface BlogPost {
+  title: string;
+  excerpt: string | null;
+  meta_title: string | null;
+  meta_description: string | null;
+  category: string | null;
+  featured_image: string | null;
+  slug: string;
+  published_at: string | null;
+  updated_at: string;
+}
 
 // Mock tool data for SEO - would come from API in real app
 const mockToolData: Record<string, { name: string; description: string; category: string }> = {
@@ -26,6 +39,8 @@ export const SEOWrapper = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const params = useParams();
   const navigate = useNavigate();
+  const [blogPost, setBlogPost] = useState<BlogPost | null>(null);
+  const [loadingBlogPost, setLoadingBlogPost] = useState(false);
   
   // Handle GitHub Pages SPA redirects from 404.html
   useEffect(() => {
@@ -36,8 +51,55 @@ export const SEOWrapper = ({ children }: { children: React.ReactNode }) => {
       navigate(redirectPath, { replace: true });
     }
   }, [navigate]);
+
+  // Fetch blog post data for dynamic SEO
+  useEffect(() => {
+    const fetchBlogPostSEO = async () => {
+      if (location.pathname.startsWith('/blog/') && !location.pathname.endsWith('/blog/')) {
+        const slug = location.pathname.replace('/blog/', '');
+        setLoadingBlogPost(true);
+        
+        try {
+          const { data, error } = await supabase
+            .from("posts")
+            .select("title, excerpt, meta_title, meta_description, category, featured_image, slug, published_at, updated_at")
+            .eq("slug", slug)
+            .eq("status", "published")
+            .single();
+
+          if (!error && data) {
+            setBlogPost(data);
+          }
+        } catch (error) {
+          console.error("Error fetching blog post SEO:", error);
+        } finally {
+          setLoadingBlogPost(false);
+        }
+      } else {
+        setBlogPost(null);
+      }
+    };
+
+    fetchBlogPostSEO();
+  }, [location.pathname]);
   
   const getSEOConfig = () => {
+    // Handle dynamic blog post pages
+    if (blogPost) {
+      const title = blogPost.meta_title || `${blogPost.title} - AutomationAIHub`;
+      const description = blogPost.meta_description || blogPost.excerpt || `Read "${blogPost.title}" on AutomationAIHub`;
+      
+      return {
+        title,
+        description,
+        keywords: `${blogPost.category ? blogPost.category + ", " : ""}AI automation, blog, ${blogPost.title}`,
+        ogTitle: title,
+        ogDescription: description,
+        twitterTitle: title,
+        twitterDescription: description,
+      };
+    }
+    
     // Handle dynamic tool pages
     if (location.pathname.startsWith('/tools/') && params.id) {
       const toolData = mockToolData[params.id];
@@ -118,6 +180,38 @@ export const SEOWrapper = ({ children }: { children: React.ReactNode }) => {
             }
           })}
         </script>
+        
+        {/* Blog Post Structured Data */}
+        {blogPost && (
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BlogPosting",
+              "headline": blogPost.title,
+              "description": blogPost.excerpt || "",
+              "image": blogPost.featured_image || "",
+              "url": `https://automationaihub.com/blog/${blogPost.slug}`,
+              "datePublished": blogPost.published_at || blogPost.updated_at,
+              "dateModified": blogPost.updated_at,
+              "author": {
+                "@type": "Organization",
+                "name": "AutomationAIHub"
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": "AutomationAIHub",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://automationaihub.com/favicon.png"
+                }
+              },
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": `https://automationaihub.com/blog/${blogPost.slug}`
+              }
+            })}
+          </script>
+        )}
       </Helmet>
       {children}
     </>
