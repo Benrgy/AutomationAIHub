@@ -1,8 +1,13 @@
-import { useState } from "react";
 import { Search } from "lucide-react";
 
-const SearchSection = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+interface SearchSectionProps {
+  onSearchChange?: (query: string) => void;
+}
+
+const SearchSection = ({ onSearchChange }: SearchSectionProps) => {
+  const handleSearchChange = (value: string) => {
+    onSearchChange?.(value);
+  };
 
   return (
     <section className="py-12 -mt-10 relative z-10">
@@ -13,8 +18,7 @@ const SearchSection = () => {
             <input
               type="text"
               placeholder="Search AI automation tools for your business..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => handleSearchChange(e.target.value)}
               className="search-input pl-14 text-lg"
             />
           </div>

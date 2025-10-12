@@ -567,9 +567,10 @@ const mockTools = [
 interface ToolGridProps {
   category?: string;
   searchQuery?: string;
+  limit?: number;
 }
 
-const ToolGrid = ({ category = "popular", searchQuery = "" }: ToolGridProps) => {
+const ToolGrid = ({ category = "popular", searchQuery = "", limit }: ToolGridProps) => {
   const [filteredTools, setFilteredTools] = useState(mockTools);
 
   useEffect(() => {
@@ -614,9 +615,11 @@ const ToolGrid = ({ category = "popular", searchQuery = "" }: ToolGridProps) => 
     );
   }
 
+  const displayTools = limit ? filteredTools.slice(0, limit) : filteredTools;
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {filteredTools.map((tool) => (
+      {displayTools.map((tool) => (
         <ToolCard key={tool.id} tool={tool} />
       ))}
     </div>

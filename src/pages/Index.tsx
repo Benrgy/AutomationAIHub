@@ -8,16 +8,17 @@ import ToolGrid from "../components/ToolGrid";
 
 const Index = () => {
   const [activeCategory, setActiveCategory] = useState("popular");
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <div className="min-h-screen">
       <Navigation />
       <HeroSection />
-      <SearchSection />
+      <SearchSection onSearchChange={setSearchQuery} />
       <CategoryTabs onCategoryChange={setActiveCategory} />
       
       {/* Featured Tools Section */}
-      <section className="py-16">
+      <section id="featured-tools" className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">
@@ -28,14 +29,14 @@ const Index = () => {
             </p>
           </div>
           
-          <ToolGrid category={activeCategory} />
+          <ToolGrid category={activeCategory} searchQuery={searchQuery} limit={6} />
           
           <div className="text-center mt-12">
             <Link 
               to="/tools" 
               className="btn-hero inline-flex items-center px-8 py-4 text-lg font-semibold rounded-lg transition-all hover:transform hover:-translate-y-1"
             >
-              View All 200+ Tools
+              View All 200+ Tools →
             </Link>
           </div>
         </div>

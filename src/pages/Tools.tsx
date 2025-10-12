@@ -24,7 +24,7 @@ const Tools = () => {
         </div>
       </section>
 
-      <SearchSection />
+      <SearchSection onSearchChange={setSearchQuery} />
       <CategoryTabs onCategoryChange={setActiveCategory} />
       
       {/* Tools Grid */}

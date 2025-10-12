@@ -59,15 +59,17 @@ const HeroSection = () => {
           <Button 
             className="btn-secondary-hero text-lg px-8 py-4"
             onClick={() => {
-              const featuredSection = document.querySelector('section');
-              const offset = 80; // Account for fixed header
-              const elementPosition = featuredSection?.getBoundingClientRect().top ?? 0;
-              const offsetPosition = elementPosition + window.pageYOffset - offset;
-              
-              window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-              });
+              const featuredSection = document.getElementById('featured-tools');
+              if (featuredSection) {
+                const offset = 100;
+                const elementPosition = featuredSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - offset;
+                
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth'
+                });
+              }
             }}
           >
             See How It Works
