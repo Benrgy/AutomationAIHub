@@ -68,6 +68,54 @@ export type Database = {
         }
         Relationships: []
       }
+      tools: {
+        Row: {
+          category: string
+          created_at: string
+          description: string
+          id: string
+          logo: string
+          name: string
+          pricing: string
+          rating: number
+          setup_time: string
+          trial_available: boolean
+          updated_at: string
+          users: string
+          website: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          description: string
+          id?: string
+          logo: string
+          name: string
+          pricing: string
+          rating: number
+          setup_time: string
+          trial_available?: boolean
+          updated_at?: string
+          users: string
+          website: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description?: string
+          id?: string
+          logo?: string
+          name?: string
+          pricing?: string
+          rating?: number
+          setup_time?: string
+          trial_available?: boolean
+          updated_at?: string
+          users?: string
+          website?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
