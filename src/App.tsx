@@ -8,6 +8,7 @@ import { SEOWrapper } from "./components/SEOWrapper";
 import { RedirectHandler } from "./components/RedirectHandler";
 import Index from "./pages/Index";
 import Tools from "./pages/Tools";
+import ToolsAdmin from "./pages/ToolsAdmin";
 import ToolDetail from "./pages/ToolDetail";
 import Categories from "./pages/Categories";
 import Resources from "./pages/Resources";
@@ -45,7 +46,8 @@ const App = () => (
           <SEOWrapper>
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/tools" element={<Tools />} />
+          <Route path="/tools" element={<Tools />} />
+          <Route path="/tools/admin" element={<ToolsAdmin />} />
               <Route path="/tools/:id" element={<ToolDetail />} />
               <Route path="/categories" element={<Categories />} />
               <Route path="/resources" element={<Resources />} />

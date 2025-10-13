@@ -52,8 +52,7 @@ const ToolGrid = ({ category = "popular", searchQuery = "", limit, onResultsChan
   if (error) {
     return (
       <div className="text-center py-12">
-        <p className="text-destructive text-lg">Failed to load tools</p>
-        <p className="text-sm text-muted-foreground mt-2">Please try again later.</p>
+        <p className="text-destructive text-lg">Error loading tools. Please try again later.</p>
       </div>
     );
   }
