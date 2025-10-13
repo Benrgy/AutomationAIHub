@@ -7,6 +7,13 @@ import ToolGrid from "../components/ToolGrid";
 const Tools = () => {
   const [activeCategory, setActiveCategory] = useState("popular");
   const [searchQuery, setSearchQuery] = useState("");
+  const [resultsCount, setResultsCount] = useState(0);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+
+  const handleResultsChange = (count: number, newSuggestions: string[]) => {
+    setResultsCount(count);
+    setSuggestions(newSuggestions);
+  };
 
   return (
     <div className="min-h-screen">
@@ -24,7 +31,12 @@ const Tools = () => {
         </div>
       </section>
 
-      <SearchSection onSearchChange={setSearchQuery} />
+      <SearchSection 
+        onSearchChange={setSearchQuery}
+        suggestions={suggestions}
+        resultsCount={resultsCount}
+        showCount={searchQuery.length > 0 || activeCategory !== "popular"}
+      />
       <CategoryTabs onCategoryChange={setActiveCategory} />
       
       {/* Tools Grid */}
@@ -39,7 +51,11 @@ const Tools = () => {
             </p>
           </div>
           
-          <ToolGrid category={activeCategory} searchQuery={searchQuery} />
+          <ToolGrid 
+            category={activeCategory} 
+            searchQuery={searchQuery}
+            onResultsChange={handleResultsChange}
+          />
         </div>
       </section>
     </div>

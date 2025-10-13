@@ -9,12 +9,24 @@ import ToolGrid from "../components/ToolGrid";
 const Index = () => {
   const [activeCategory, setActiveCategory] = useState("popular");
   const [searchQuery, setSearchQuery] = useState("");
+  const [resultsCount, setResultsCount] = useState(0);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+
+  const handleResultsChange = (count: number, newSuggestions: string[]) => {
+    setResultsCount(count);
+    setSuggestions(newSuggestions);
+  };
 
   return (
     <div className="min-h-screen">
       <Navigation />
       <HeroSection />
-      <SearchSection onSearchChange={setSearchQuery} />
+      <SearchSection 
+        onSearchChange={setSearchQuery} 
+        suggestions={suggestions}
+        resultsCount={resultsCount}
+        showCount={searchQuery.length > 0}
+      />
       <CategoryTabs onCategoryChange={setActiveCategory} />
       
       {/* Featured Tools Section */}
@@ -29,7 +41,12 @@ const Index = () => {
             </p>
           </div>
           
-          <ToolGrid category={activeCategory} searchQuery={searchQuery} limit={6} />
+          <ToolGrid 
+            category={activeCategory} 
+            searchQuery={searchQuery} 
+            limit={6}
+            onResultsChange={handleResultsChange}
+          />
           
           <div className="text-center mt-12">
             <Link 

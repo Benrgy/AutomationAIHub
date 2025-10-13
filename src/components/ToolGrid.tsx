@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import ToolCard from "./ToolCard";
+import { useToolSearch } from "@/hooks/useToolSearch";
 
 // Mock data for tools
 const mockTools = [
@@ -564,47 +565,40 @@ const mockTools = [
   }
 ];
 
-interface ToolGridProps {
+export interface ToolGridProps {
   category?: string;
   searchQuery?: string;
   limit?: number;
+  onResultsChange?: (count: number, suggestions: string[]) => void;
 }
 
-const ToolGrid = ({ category = "popular", searchQuery = "", limit }: ToolGridProps) => {
-  const [filteredTools, setFilteredTools] = useState(mockTools);
+const ToolGrid = ({ category = "popular", searchQuery = "", limit, onResultsChange }: ToolGridProps) => {
+  // Map category slugs to full category names
+  const categoryMap: { [key: string]: string } = {
+    workflow: "Workflow Automation",
+    business: "Business Operations",
+    marketing: "Marketing Automation",
+    hr: "HR Automation",
+    sales: "Sales Automation",
+    analytics: "Data & Analytics",
+    integration: "Integration Platforms"
+  };
+  
+  const fullCategoryName = category !== "popular" && category !== "all" 
+    ? categoryMap[category] || category 
+    : category;
 
+  const { filteredTools, suggestions, totalCount } = useToolSearch({
+    tools: mockTools,
+    category: fullCategoryName,
+    searchQuery,
+    limit,
+  });
+
+  // Notify parent of results changes
   useEffect(() => {
-    let filtered = mockTools;
-
-    // Filter by search query
-    if (searchQuery) {
-      filtered = filtered.filter(tool =>
-        tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        tool.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        tool.category.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
-
-    // Filter by category
-    if (category !== "popular") {
-      const categoryMap: { [key: string]: string } = {
-        workflow: "Workflow Automation",
-        business: "Business Operations",
-        marketing: "Marketing Automation",
-        hr: "HR Automation",
-        sales: "Sales Automation",
-        analytics: "Data & Analytics",
-        integration: "Integration Platforms"
-      };
-      
-      const categoryName = categoryMap[category];
-      if (categoryName) {
-        filtered = filtered.filter(tool => tool.category === categoryName);
-      }
-    }
-
-    setFilteredTools(filtered);
-  }, [category, searchQuery]);
+    onResultsChange?.(totalCount, suggestions);
+  }, [totalCount, suggestions, onResultsChange]);
 
   if (filteredTools.length === 0) {
     return (
@@ -615,11 +609,9 @@ const ToolGrid = ({ category = "popular", searchQuery = "", limit }: ToolGridPro
     );
   }
 
-  const displayTools = limit ? filteredTools.slice(0, limit) : filteredTools;
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {displayTools.map((tool) => (
+      {filteredTools.map((tool) => (
         <ToolCard key={tool.id} tool={tool} />
       ))}
     </div>
