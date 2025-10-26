@@ -1,32 +1,39 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { User } from "@supabase/supabase-js";
+import { User, Session } from "@supabase/supabase-js";
 
 export const useAuth = () => {
   const [user, setUser] = useState<User | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    // Set up auth state listener FIRST
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
       setUser(session?.user ?? null);
+      
+      // Defer admin check with setTimeout to avoid callback deadlock
       if (session?.user) {
-        checkAdminStatus(session.user.id);
+        setTimeout(() => {
+          checkAdminStatus(session.user.id);
+        }, 0);
       } else {
+        setIsAdmin(false);
         setLoading(false);
       }
     });
 
-    // Listen for auth changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    // THEN check for existing session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
         checkAdminStatus(session.user.id);
       } else {
-        setIsAdmin(false);
         setLoading(false);
       }
     });
@@ -36,8 +43,8 @@ export const useAuth = () => {
 
   const checkAdminStatus = async (userId: string) => {
     try {
-      // Query user_roles table directly
-      const { count, error } = await supabase
+      // Query using any to bypass type check until types regenerate
+      const { count, error } = await (supabase as any)
         .from("user_roles")
         .select("*", { count: "exact", head: true })
         .eq("user_id", userId)
@@ -61,5 +68,5 @@ export const useAuth = () => {
     await supabase.auth.signOut();
   };
 
-  return { user, isAdmin, loading, signOut };
+  return { user, session, isAdmin, loading, signOut };
 };
