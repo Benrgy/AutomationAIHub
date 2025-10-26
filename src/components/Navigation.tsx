@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Search, Menu, X } from "lucide-react";
+import { Search, Menu, X, LogOut } from "lucide-react";
 import { Button } from "./ui/button";
+import { useAuth } from "@/hooks/useAuth";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, isAdmin, signOut } = useAuth();
 
   return (
     <nav className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -42,16 +44,33 @@ const Navigation = () => {
             <Button variant="ghost" size="icon">
               <Search className="h-5 w-5" />
             </Button>
-            <Link to="/auth">
-              <Button variant="outline">
-                Login
-              </Button>
-            </Link>
-            <Link to="/admin">
-              <Button className="btn-hero">
-                Admin
-              </Button>
-            </Link>
+            {user ? (
+              <>
+                {isAdmin && (
+                  <>
+                    <Link to="/tools/admin">
+                      <Button variant="outline">
+                        Tools Admin
+                      </Button>
+                    </Link>
+                    <Link to="/admin">
+                      <Button variant="outline">
+                        Blog Admin
+                      </Button>
+                    </Link>
+                  </>
+                )}
+                <Button variant="ghost" size="icon" onClick={signOut}>
+                  <LogOut className="h-5 w-5" />
+                </Button>
+              </>
+            ) : (
+              <Link to="/auth">
+                <Button variant="outline">
+                  Login
+                </Button>
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -104,17 +123,35 @@ const Navigation = () => {
               >
                 Submit Tool
               </Link>
-              <div className="flex space-x-2 pt-4">
-                <Link to="/auth" className="flex-1">
-                  <Button variant="outline" className="w-full">
-                    Login
-                  </Button>
-                </Link>
-                <Link to="/admin" className="flex-1">
-                  <Button className="btn-hero w-full">
-                    Admin
-                  </Button>
-                </Link>
+              <div className="flex flex-col space-y-2 pt-4">
+                {user ? (
+                  <>
+                    {isAdmin && (
+                      <>
+                        <Link to="/tools/admin" onClick={() => setIsMenuOpen(false)}>
+                          <Button variant="outline" className="w-full">
+                            Tools Admin
+                          </Button>
+                        </Link>
+                        <Link to="/admin" onClick={() => setIsMenuOpen(false)}>
+                          <Button variant="outline" className="w-full">
+                            Blog Admin
+                          </Button>
+                        </Link>
+                      </>
+                    )}
+                    <Button variant="outline" className="w-full" onClick={signOut}>
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Sign Out
+                    </Button>
+                  </>
+                ) : (
+                  <Link to="/auth" onClick={() => setIsMenuOpen(false)}>
+                    <Button variant="outline" className="w-full">
+                      Login
+                    </Button>
+                  </Link>
+                )}
               </div>
             </div>
           </div>

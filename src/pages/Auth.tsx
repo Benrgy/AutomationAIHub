@@ -22,16 +22,16 @@ const Auth = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // Check if user is already logged in
+    // Check if user is already logged in and redirect to home
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
-        navigate("/admin");
+        navigate("/");
       }
     });
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
-        navigate("/admin");
+        navigate("/");
       }
     });
 

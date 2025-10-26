@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { SEOWrapper } from "./components/SEOWrapper";
 import { RedirectHandler } from "./components/RedirectHandler";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 import Index from "./pages/Index";
 import Tools from "./pages/Tools";
 import ToolsAdmin from "./pages/ToolsAdmin";
@@ -47,7 +48,11 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
           <Route path="/tools" element={<Tools />} />
-          <Route path="/tools/admin" element={<ToolsAdmin />} />
+          <Route path="/tools/admin" element={
+            <ProtectedRoute requireAdmin={true}>
+              <ToolsAdmin />
+            </ProtectedRoute>
+          } />
               <Route path="/tools/:id" element={<ToolDetail />} />
               <Route path="/categories" element={<Categories />} />
               <Route path="/resources" element={<Resources />} />
@@ -55,7 +60,11 @@ const App = () => (
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogDetail />} />
               <Route path="/auth" element={<Auth />} />
-              <Route path="/admin" element={<BlogAdmin />} />
+              <Route path="/admin" element={
+            <ProtectedRoute requireAdmin={true}>
+              <BlogAdmin />
+            </ProtectedRoute>
+          } />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
