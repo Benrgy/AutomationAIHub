@@ -3,6 +3,7 @@ import Navigation from "../components/Navigation";
 import SearchSection from "../components/SearchSection";
 import CategoryTabs from "../components/CategoryTabs";
 import ToolGrid from "../components/ToolGrid";
+import Footer from "../components/Footer";
 
 const Tools = () => {
   const [activeCategory, setActiveCategory] = useState("popular");
@@ -58,6 +59,8 @@ const Tools = () => {
           />
         </div>
       </section>
+      
+      <Footer />
     </div>
   );
 };

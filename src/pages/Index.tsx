@@ -5,6 +5,9 @@ import HeroSection from "../components/HeroSection";
 import SearchSection from "../components/SearchSection";
 import CategoryTabs from "../components/CategoryTabs";
 import ToolGrid from "../components/ToolGrid";
+import TrustSignals from "../components/TrustSignals";
+import CTASection from "../components/CTASection";
+import Footer from "../components/Footer";
 
 const Index = () => {
   const [activeCategory, setActiveCategory] = useState("popular");
@@ -82,6 +85,10 @@ const Index = () => {
           </div>
         </div>
       </section>
+      
+      <TrustSignals />
+      <CTASection />
+      <Footer />
     </div>
   );
 };

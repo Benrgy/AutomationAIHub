@@ -38,8 +38,11 @@ const ToolGrid = ({ category = "popular", searchQuery = "", limit, onResultsChan
 
   // Notify parent of results changes
   useEffect(() => {
-    onResultsChange?.(totalCount, suggestions);
-  }, [totalCount, suggestions, onResultsChange]);
+    if (onResultsChange) {
+      onResultsChange(totalCount, suggestions);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [totalCount, suggestions]);
 
   if (isLoading) {
     return (
