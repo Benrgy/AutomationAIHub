@@ -181,6 +181,101 @@ export const SEOWrapper = ({ children }: { children: React.ReactNode }) => {
           })}
         </script>
         
+        {/* FAQ Structured Data */}
+        {location.pathname === '/' && (
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "What are AI automation tools and how can they benefit my business?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "AI automation tools are software solutions that use artificial intelligence to automate repetitive business tasks. They can save your business 20+ hours weekly, reduce labor costs by $50,000+ annually, and boost productivity by 300%. These tools work across marketing, sales, HR, finance, and operations without requiring technical expertise."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How much do AI automation tools cost?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "AI automation tools range from free plans to enterprise solutions. Most tools offer free trials to test before committing. Pricing typically starts at $10-50/month for small businesses and scales based on features, users, and automation volume. The average business sees ROI within 2-3 months through time savings and increased productivity."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Do I need technical skills to use automation tools?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No! Most modern AI automation tools are designed for non-technical users with drag-and-drop interfaces and pre-built templates. You can set up most automations in under 5 minutes without coding knowledge. Many tools also offer free onboarding support and tutorials to help you get started."
+                  }
+                }
+              ]
+            })}
+          </script>
+        )}
+        
+        {/* Breadcrumb Structured Data */}
+        {location.pathname !== '/' && (
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": location.pathname.split('/').filter(Boolean).reduce((acc: any[], path: string, index: number) => {
+                const position = index + 2;
+                const itemPath = '/' + location.pathname.split('/').filter(Boolean).slice(0, index + 1).join('/');
+                const name = path.split('-').map((word: string) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+                
+                return [
+                  ...acc,
+                  {
+                    "@type": "ListItem",
+                    "position": position,
+                    "name": name,
+                    "item": `https://automationaihub.com${itemPath}`
+                  }
+                ];
+              }, [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://automationaihub.com/"
+                }
+              ])
+            })}
+          </script>
+        )}
+        
+        {/* SoftwareApplication Schema for Tool Pages */}
+        {location.pathname.startsWith('/tools/') && params.id && mockToolData[params.id] && (
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              "name": mockToolData[params.id].name,
+              "applicationCategory": "BusinessApplication",
+              "description": mockToolData[params.id].description,
+              "operatingSystem": "Web",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock"
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.5",
+                "ratingCount": "1250",
+                "bestRating": "5",
+                "worstRating": "1"
+              }
+            })}
+          </script>
+        )}
+        
         {/* Blog Post Structured Data */}
         {blogPost && (
           <script type="application/ld+json">

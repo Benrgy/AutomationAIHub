@@ -18,15 +18,15 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Main Hook */}
+        {/* Main Hook with SEO-optimized H1 */}
         <h1 className="hero-title mb-8 max-w-4xl mx-auto">
-          Stop Wasting 20+ Hours on Manual Tasks Every Week
+          Best AI Automation Tools 2025: Save 20+ Hours Weekly on Manual Tasks
         </h1>
 
         {/* Value Proposition */}
         <p className="hero-subtitle mb-12 max-w-3xl mx-auto">
           Join 25,000+ business owners using AI automation tools that eliminate busywork 
-          and boost productivity by 300% - without technical skills
+          and boost productivity by 300% - without technical skills or coding
         </p>
 
         {/* Benefit Bullets */}

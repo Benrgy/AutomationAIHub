@@ -8,6 +8,8 @@ import ToolGrid from "../components/ToolGrid";
 import TrustSignals from "../components/TrustSignals";
 import CTASection from "../components/CTASection";
 import Footer from "../components/Footer";
+import FAQ from "../components/FAQ";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 const Index = () => {
   const [activeCategory, setActiveCategory] = useState("popular");
@@ -23,6 +25,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
+      <Breadcrumbs />
       <HeroSection />
       <SearchSection 
         onSearchChange={setSearchQuery} 
@@ -33,16 +36,16 @@ const Index = () => {
       <CategoryTabs onCategoryChange={setActiveCategory} />
       
       {/* Featured Tools Section */}
-      <section id="featured-tools" className="py-16">
+      <section id="featured-tools" className="py-16" aria-labelledby="featured-heading">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">
-              Featured AI Tools That Save 20+ Hours Weekly
+          <header className="text-center mb-12">
+            <h2 id="featured-heading" className="text-3xl md:text-4xl font-bold mb-4">
+              Top-Rated AI Automation Tools That Save 20+ Hours Weekly
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Hand-picked automation tools trusted by 25,000+ businesses worldwide
+              Hand-picked automation tools trusted by 25,000+ businesses worldwide. Compare features, pricing & reviews.
             </p>
-          </div>
+          </header>
           
           <ToolGrid 
             category={activeCategory} 
@@ -63,8 +66,9 @@ const Index = () => {
       </section>
       
       {/* Stats Section */}
-      <section className="py-16 bg-card/50 border-y border-border">
+      <section className="py-16 bg-card/50 border-y border-border" aria-labelledby="stats-heading">
         <div className="container mx-auto px-4">
+          <h2 id="stats-heading" className="sr-only">Platform Statistics</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-4xl font-bold text-primary mb-2">200+</div>
@@ -87,6 +91,7 @@ const Index = () => {
       </section>
       
       <TrustSignals />
+      <FAQ />
       <CTASection />
       <Footer />
     </div>

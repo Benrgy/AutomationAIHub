@@ -6,35 +6,37 @@ export interface SEOConfig {
   ogDescription: string;
   twitterTitle: string;
   twitterDescription: string;
+  canonical?: string;
+  alternates?: { hreflang: string; href: string }[];
 }
 
 export const seoConfigs: Record<string, SEOConfig> = {
   '/': {
-    title: 'AutomationAIHub - Save 20+ Hours Weekly with Best AI Automation Tools',
-    description: 'Discover 200+ AI automation tools to eliminate manual work and boost productivity by 300%. Free trials available. Used by 25,000+ businesses worldwide.',
-    keywords: 'AI automation tools, business automation, workflow automation, productivity tools, AI tools directory, automation software',
-    ogTitle: 'AutomationAIHub - Stop Wasting Time on Manual Tasks',
-    ogDescription: 'Join 25,000+ businesses saving 20+ hours weekly with AI automation tools. Browse 200+ tools with free trials.',
-    twitterTitle: 'AutomationAIHub - AI Automation Tools Directory',
-    twitterDescription: 'Save 20+ hours weekly with 200+ AI automation tools. Free trials available.'
+    title: 'Best AI Automation Tools 2025 - Save 20+ Hours Weekly | AutomationAIHub',
+    description: 'Discover 200+ AI automation tools trusted by 25,000+ businesses. Eliminate manual tasks, boost productivity 300%, save $50K+ yearly. Free trials & expert reviews.',
+    keywords: 'AI automation tools 2025, business automation software, workflow automation, productivity tools, no-code automation, AI tools directory, automation software reviews',
+    ogTitle: 'Stop Wasting 20+ Hours Weekly - Best AI Automation Tools 2025',
+    ogDescription: '25,000+ businesses save time with our curated AI automation tools. Compare features, pricing & reviews. Free trials available.',
+    twitterTitle: 'Best AI Automation Tools Directory 2025',
+    twitterDescription: 'Save 20+ hours weekly with 200+ AI automation tools. Trusted by 25,000+ businesses.'
   },
   '/tools': {
-    title: 'AI Tools Directory - 200+ Automation Tools to Boost Productivity 300%',
-    description: 'Browse the complete directory of 200+ AI automation tools. Compare features, pricing, and reviews. Find the perfect tool to eliminate manual work.',
-    keywords: 'AI tools directory, automation tools list, business automation software, workflow tools, productivity apps',
-    ogTitle: 'Complete AI Tools Directory - 200+ Automation Solutions',
-    ogDescription: 'Find the perfect AI automation tool from 200+ options. Compare features, pricing, and user reviews.',
-    twitterTitle: 'AI Tools Directory - 200+ Automation Tools',
-    twitterDescription: 'Browse 200+ AI automation tools with reviews, pricing, and free trials.'
+    title: 'AI Tools Directory 2025 - Compare 200+ Automation Tools | AutomationAIHub',
+    description: 'Browse 200+ AI automation tools with verified reviews, pricing comparisons & free trials. Filter by category, budget & features. Save 20+ hours weekly.',
+    keywords: 'AI tools directory 2025, automation tools comparison, business automation software, workflow tools, productivity apps, automation tools list, AI software reviews',
+    ogTitle: 'Compare 200+ AI Automation Tools - Complete Directory 2025',
+    ogDescription: 'Find the perfect AI automation tool. Compare features, pricing, reviews & free trials from 200+ verified solutions.',
+    twitterTitle: 'AI Tools Directory - 200+ Automation Solutions Compared',
+    twitterDescription: 'Browse & compare 200+ AI automation tools with reviews, pricing & free trials.'
   },
   '/categories': {
-    title: 'AI Automation Categories - Find Tools by Department & Function',
-    description: 'Explore AI automation tools by category: Marketing, Sales, HR, Finance, Operations. Find department-specific tools in 60 seconds.',
-    keywords: 'automation categories, marketing automation, sales automation, HR automation, finance automation, operations automation',
-    ogTitle: 'AI Automation Tools by Category - Find Perfect Solutions',
-    ogDescription: 'Browse AI automation tools by department: Marketing, Sales, HR, Finance, Operations. Perfect solutions for every team.',
-    twitterTitle: 'AI Automation Categories - Tools by Department',
-    twitterDescription: 'Find AI automation tools for Marketing, Sales, HR, Finance, and Operations teams.'
+    title: 'AI Automation Tools by Category 2025 - Marketing, Sales, HR & More',
+    description: 'Explore AI automation tools by category: Marketing, Sales, HR, Finance, Operations. Find department-specific solutions in 60 seconds. Free trials available.',
+    keywords: 'automation categories, marketing automation tools, sales automation software, HR automation, finance automation, operations automation, department-specific AI tools',
+    ogTitle: 'AI Automation Tools by Category - Perfect Solutions for Every Team',
+    ogDescription: 'Browse curated AI automation tools by department: Marketing, Sales, HR, Finance, Operations. Find your perfect solution fast.',
+    twitterTitle: 'AI Automation Categories - Tools by Department 2025',
+    twitterDescription: 'Explore AI automation tools for Marketing, Sales, HR, Finance & Operations teams.'
   },
   '/blog': {
     title: 'AI Automation Guides & Business Efficiency Strategies - AutomationAIHub',

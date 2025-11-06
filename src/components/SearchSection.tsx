@@ -45,7 +45,7 @@ const SearchSection = ({ onSearchChange, suggestions = [], resultsCount, showCou
   };
 
   return (
-    <section className="py-12 -mt-10 relative z-10">
+    <section className="py-12 -mt-10 relative z-10" aria-label="Search AI automation tools">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto">
           <div className="relative" ref={searchRef}>
@@ -57,6 +57,8 @@ const SearchSection = ({ onSearchChange, suggestions = [], resultsCount, showCou
               onChange={(e) => handleSearchChange(e.target.value)}
               onFocus={() => setShowSuggestions(searchValue.length > 0 && suggestions.length > 0)}
               className="search-input pl-14 pr-12 text-lg h-14"
+              aria-label="Search AI automation tools"
+              autoComplete="off"
             />
             {searchValue && (
               <button
