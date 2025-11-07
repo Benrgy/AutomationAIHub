@@ -9,7 +9,7 @@ const Navigation = () => {
   const { user, isAdmin, signOut } = useAuth();
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <nav className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60" aria-label="Main navigation">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
@@ -21,27 +21,27 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link to="/tools" className="text-foreground hover:text-primary transition-colors">
+          <div className="hidden md:flex items-center space-x-8" role="navigation">
+            <Link to="/tools" className="text-foreground hover:text-primary transition-colors" aria-label="Browse AI automation tools">
               Tools
             </Link>
-            <Link to="/categories" className="text-foreground hover:text-primary transition-colors">
+            <Link to="/categories" className="text-foreground hover:text-primary transition-colors" aria-label="Browse tools by category">
               Categories
             </Link>
-            <Link to="/blog" className="text-foreground hover:text-primary transition-colors">
+            <Link to="/blog" className="text-foreground hover:text-primary transition-colors" aria-label="Read automation guides and articles">
               Blog
             </Link>
-            <Link to="/resources" className="text-foreground hover:text-primary transition-colors">
+            <Link to="/resources" className="text-foreground hover:text-primary transition-colors" aria-label="Download free automation resources">
               Resources
             </Link>
-            <Link to="/submit" className="text-foreground hover:text-primary transition-colors">
+            <Link to="/submit" className="text-foreground hover:text-primary transition-colors" aria-label="Submit your AI tool">
               Submit Tool
             </Link>
           </div>
 
           {/* Search and Actions */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" aria-label="Search tools">
               <Search className="h-5 w-5" />
             </Button>
             {user ? (

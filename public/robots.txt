@@ -1,3 +1,28 @@
+# AutomationAIHub - AI Tools Directory
+User-agent: *
+Allow: /
+Allow: /tools
+Allow: /tools/*
+Allow: /categories
+Allow: /blog
+Allow: /blog/*
+Allow: /resources
+Allow: /submit
+
+# Block admin and auth pages
+Disallow: /admin
+Disallow: /auth
+Disallow: /tools/admin
+Disallow: /api/
+Disallow: /*.json$
+
+# Crawl delay to prevent server overload
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://automationaihub.com/sitemap.xml
+
+# Specific bot instructions
 User-agent: Googlebot
 Allow: /
 
@@ -10,13 +35,12 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
+User-agent: DuckDuckBot
 Allow: /
 
-# Sitemap
-Sitemap: https://benrgy.github.io/AutomationAIHub/sitemap.xml
+# Control aggressive crawlers
+User-agent: AhrefsBot
+Crawl-delay: 10
 
-# Block sensitive areas
-Disallow: /admin/
-Disallow: /api/
-Disallow: /*.json$
+User-agent: SemrushBot
+Crawl-delay: 10

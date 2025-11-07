@@ -25,7 +25,7 @@ const CategoryTabs = ({ onCategoryChange }: CategoryTabsProps) => {
   };
 
   return (
-    <section className="py-8 border-b border-border">
+    <section className="py-8 border-b border-border" aria-label="Tool categories">
       <div className="container mx-auto px-4">
         <div className="overflow-x-auto">
           <div className="flex space-x-1 md:space-x-2 min-w-max md:justify-center pb-4">
@@ -38,6 +38,8 @@ const CategoryTabs = ({ onCategoryChange }: CategoryTabsProps) => {
                   key={category.id}
                   onClick={() => handleCategoryClick(category.id)}
                   className={`category-tab flex-shrink-0 ${isActive ? 'active' : ''}`}
+                  aria-label={`Filter by ${category.name}`}
+                  aria-pressed={isActive}
                 >
                   <div className="flex items-center space-x-2">
                     <IconComponent className="h-4 w-4" />

@@ -68,13 +68,33 @@ export const seoConfigs: Record<string, SEOConfig> = {
 };
 
 export const getToolSEO = (toolName: string, toolDescription: string, toolCategory: string): SEOConfig => ({
-  title: `${toolName} Review: ${toolDescription.slice(0, 40)}... - Free Trial 2025`,
-  description: `${toolName} review: ${toolDescription.slice(0, 120)}. Compare features, pricing, and user reviews. Free trial available.`,
-  keywords: `${toolName.toLowerCase()}, ${toolName.toLowerCase()} review, ${toolCategory.toLowerCase()} automation, ${toolName.toLowerCase()} pricing, ${toolName.toLowerCase()} features`,
-  ogTitle: `${toolName} - ${toolCategory} Automation Tool Review`,
-  ogDescription: `Detailed review of ${toolName}: ${toolDescription.slice(0, 100)}. Features, pricing, and user feedback.`,
-  twitterTitle: `${toolName} Review - ${toolCategory} Automation`,
-  twitterDescription: `${toolName} review: ${toolDescription.slice(0, 120)}. Free trial available.`
+  title: `${toolName} Review 2025: Features, Pricing & Free Trial | AutomationAIHub`,
+  description: `${toolName} review: ${toolDescription.slice(0, 120)}... Compare features, pricing & user reviews. Start free trial today.`,
+  keywords: `${toolName.toLowerCase()}, ${toolName.toLowerCase()} review 2025, ${toolCategory.toLowerCase()} automation, ${toolName.toLowerCase()} pricing, ${toolName.toLowerCase()} features, ${toolName.toLowerCase()} free trial, best ${toolCategory.toLowerCase()} tools`,
+  ogTitle: `${toolName} - ${toolCategory} Automation Tool Review 2025`,
+  ogDescription: `Detailed ${toolName} review: Features, pricing & user feedback. ${toolDescription.slice(0, 100)}`,
+  twitterTitle: `${toolName} Review 2025 - ${toolCategory} Automation`,
+  twitterDescription: `${toolName}: ${toolDescription.slice(0, 120)}... Free trial available.`
+});
+
+export const getCategorySEO = (categoryName: string, categoryDescription: string): SEOConfig => ({
+  title: `Best ${categoryName} Tools 2025 - Top Automation Software Reviewed`,
+  description: `Compare the best ${categoryName} tools. ${categoryDescription}. Expert reviews, pricing comparisons & free trials.`,
+  keywords: `${categoryName.toLowerCase()} tools, ${categoryName.toLowerCase()} automation, best ${categoryName.toLowerCase()} software 2025, ${categoryName.toLowerCase()} productivity tools`,
+  ogTitle: `Top ${categoryName} Automation Tools 2025`,
+  ogDescription: `Discover the best ${categoryName} tools. ${categoryDescription}`,
+  twitterTitle: `Best ${categoryName} Tools 2025`,
+  twitterDescription: `Compare top ${categoryName} automation tools with reviews & pricing.`
+});
+
+export const getBlogSEO = (blogTitle: string, blogExcerpt: string, blogCategory?: string): SEOConfig => ({
+  title: `${blogTitle} | AutomationAIHub Blog`,
+  description: blogExcerpt.slice(0, 155),
+  keywords: `${blogCategory ? blogCategory + ', ' : ''}AI automation, automation guide, ${blogTitle.toLowerCase()}, business automation tips`,
+  ogTitle: blogTitle,
+  ogDescription: blogExcerpt.slice(0, 155),
+  twitterTitle: blogTitle,
+  twitterDescription: blogExcerpt.slice(0, 155)
 });
 
 export const getDefaultSEO = (): SEOConfig => seoConfigs['/'];
