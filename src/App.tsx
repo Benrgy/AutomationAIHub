@@ -19,6 +19,9 @@ import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
 import BlogAdmin from "./pages/BlogAdmin";
 import BlogDetail from "./pages/BlogDetail";
+import UsLanding from "./pages/UsLanding";
+import UkLanding from "./pages/UkLanding";
+import CaLanding from "./pages/CaLanding";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +50,9 @@ const App = () => (
           <SEOWrapper>
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/us" element={<UsLanding />} />
+              <Route path="/uk" element={<UkLanding />} />
+              <Route path="/ca" element={<CaLanding />} />
           <Route path="/tools" element={<Tools />} />
           <Route path="/tools/admin" element={
             <ProtectedRoute requireAdmin={true}>
