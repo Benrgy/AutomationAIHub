@@ -126,7 +126,21 @@ export const SEOWrapper = ({ children }: { children: React.ReactNode }) => {
         <meta name="description" content={seoConfig.description} />
         <meta name="keywords" content={seoConfig.keywords} />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href={`https://automationaihub.com${location.pathname}`} />
+        <link rel="canonical" href={seoConfig.canonical || `https://automationaihub.com${location.pathname}`} />
+        
+        {/* Hreflang Tags for International SEO */}
+        {seoConfig.alternates && seoConfig.alternates.map((alternate) => (
+          <link 
+            key={alternate.hreflang} 
+            rel="alternate" 
+            hrefLang={alternate.hreflang} 
+            href={alternate.href} 
+          />
+        ))}
+        
+        {/* Geo Meta Tags */}
+        <meta name="geo.region" content="US;GB;CA" />
+        <meta name="geo.placename" content="United States;United Kingdom;Canada" />
         
         {/* Open Graph */}
         <meta property="og:title" content={seoConfig.ogTitle} />
@@ -135,6 +149,9 @@ export const SEOWrapper = ({ children }: { children: React.ReactNode }) => {
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://automationaihub.com/og-image.png" />
         <meta property="og:site_name" content="AutomationAIHub" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:locale:alternate" content="en_GB" />
+        <meta property="og:locale:alternate" content="en_CA" />
         
         {/* Twitter Card */}
         <meta name="twitter:title" content={seoConfig.twitterTitle} />
@@ -148,7 +165,73 @@ export const SEOWrapper = ({ children }: { children: React.ReactNode }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         
-        {/* Structured Data for Organization */}
+        {/* LocalBusiness Schema with Multiple Locations */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "AutomationAIHub",
+            "url": "https://automationaihub.com",
+            "logo": "https://automationaihub.com/logo.png",
+            "description": "The ultimate directory of AI automation tools for businesses in US, UK, and Canada",
+            "priceRange": "Free - $$$",
+            "image": "https://automationaihub.com/og-image.png",
+            "telephone": "+1-800-AUTOMATE",
+            "email": "hello@automationaihub.com",
+            "areaServed": [
+              {
+                "@type": "Country",
+                "name": "United States"
+              },
+              {
+                "@type": "Country",
+                "name": "United Kingdom"
+              },
+              {
+                "@type": "Country",
+                "name": "Canada"
+              }
+            ],
+            "address": [
+              {
+                "@type": "PostalAddress",
+                "addressLocality": "New York",
+                "addressRegion": "NY",
+                "addressCountry": "US",
+                "streetAddress": "123 Automation Ave"
+              },
+              {
+                "@type": "PostalAddress",
+                "addressLocality": "London",
+                "addressRegion": "England",
+                "addressCountry": "GB",
+                "streetAddress": "456 AI Street"
+              },
+              {
+                "@type": "PostalAddress",
+                "addressLocality": "Toronto",
+                "addressRegion": "ON",
+                "addressCountry": "CA",
+                "streetAddress": "789 Innovation Blvd"
+              }
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "customer service",
+              "email": "hello@automationaihub.com",
+              "areaServed": ["US", "GB", "CA"],
+              "availableLanguage": ["en"]
+            },
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+              "opens": "00:00",
+              "closes": "23:59"
+            }
+          })}
+        </script>
+        
+        {/* Organization Schema */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -157,6 +240,11 @@ export const SEOWrapper = ({ children }: { children: React.ReactNode }) => {
             "url": "https://automationaihub.com",
             "logo": "https://automationaihub.com/logo.png",
             "description": "The ultimate directory of AI automation tools for businesses",
+            "sameAs": [
+              "https://twitter.com/AutomationAIHub",
+              "https://linkedin.com/company/automationaihub",
+              "https://facebook.com/automationaihub"
+            ],
             "contactPoint": {
               "@type": "ContactPoint",
               "contactType": "customer service",

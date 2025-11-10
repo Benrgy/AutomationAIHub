@@ -18,7 +18,14 @@ export const seoConfigs: Record<string, SEOConfig> = {
     ogTitle: 'Stop Wasting 20+ Hours Weekly - Best AI Automation Tools 2025',
     ogDescription: '25,000+ businesses save time with our curated AI automation tools. Compare features, pricing & reviews. Free trials available.',
     twitterTitle: 'Best AI Automation Tools Directory 2025',
-    twitterDescription: 'Save 20+ hours weekly with 200+ AI automation tools. Trusted by 25,000+ businesses.'
+    twitterDescription: 'Save 20+ hours weekly with 200+ AI automation tools. Trusted by 25,000+ businesses.',
+    canonical: 'https://automationaihub.com',
+    alternates: [
+      { hreflang: 'en-US', href: 'https://automationaihub.com' },
+      { hreflang: 'en-GB', href: 'https://automationaihub.com/uk' },
+      { hreflang: 'en-CA', href: 'https://automationaihub.com/ca' },
+      { hreflang: 'x-default', href: 'https://automationaihub.com' }
+    ]
   },
   '/tools': {
     title: 'AI Tools Directory 2025 - Compare 200+ Automation Tools | AutomationAIHub',
@@ -27,7 +34,14 @@ export const seoConfigs: Record<string, SEOConfig> = {
     ogTitle: 'Compare 200+ AI Automation Tools - Complete Directory 2025',
     ogDescription: 'Find the perfect AI automation tool. Compare features, pricing, reviews & free trials from 200+ verified solutions.',
     twitterTitle: 'AI Tools Directory - 200+ Automation Solutions Compared',
-    twitterDescription: 'Browse & compare 200+ AI automation tools with reviews, pricing & free trials.'
+    twitterDescription: 'Browse & compare 200+ AI automation tools with reviews, pricing & free trials.',
+    canonical: 'https://automationaihub.com/tools',
+    alternates: [
+      { hreflang: 'en-US', href: 'https://automationaihub.com/tools' },
+      { hreflang: 'en-GB', href: 'https://automationaihub.com/uk/tools' },
+      { hreflang: 'en-CA', href: 'https://automationaihub.com/ca/tools' },
+      { hreflang: 'x-default', href: 'https://automationaihub.com/tools' }
+    ]
   },
   '/categories': {
     title: 'AI Automation Tools by Category 2025 - Marketing, Sales, HR & More',
@@ -45,7 +59,14 @@ export const seoConfigs: Record<string, SEOConfig> = {
     ogTitle: 'AI Automation Guides - Business Efficiency Strategies',
     ogDescription: 'Expert guides on implementing AI automation to save time and boost productivity. Real case studies and strategies.',
     twitterTitle: 'AI Automation Guides & Strategies',
-    twitterDescription: 'Learn to implement AI automation with expert guides and real case studies.'
+    twitterDescription: 'Learn to implement AI automation with expert guides and real case studies.',
+    canonical: 'https://automationaihub.com/blog',
+    alternates: [
+      { hreflang: 'en-US', href: 'https://automationaihub.com/blog' },
+      { hreflang: 'en-GB', href: 'https://automationaihub.com/uk/blog' },
+      { hreflang: 'en-CA', href: 'https://automationaihub.com/ca/blog' },
+      { hreflang: 'x-default', href: 'https://automationaihub.com/blog' }
+    ]
   },
   '/resources': {
     title: 'Free Business Automation Resources & Downloads - Templates & Guides',
