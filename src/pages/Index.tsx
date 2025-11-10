@@ -10,6 +10,8 @@ import CTASection from "../components/CTASection";
 import Footer from "../components/Footer";
 import FAQ from "../components/FAQ";
 import Breadcrumbs from "../components/Breadcrumbs";
+import { RegionalTestimonials } from "../components/RegionalTestimonials";
+import { RegionalBusinessInfo } from "../components/RegionalBusinessInfo";
 
 const Index = () => {
   const [activeCategory, setActiveCategory] = useState("popular");
@@ -89,6 +91,10 @@ const Index = () => {
           </div>
         </div>
       </section>
+      
+      <RegionalBusinessInfo />
+      
+      <RegionalTestimonials />
       
       <TrustSignals />
       <FAQ />

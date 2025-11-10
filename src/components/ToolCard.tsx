@@ -2,6 +2,8 @@ import { ExternalLink, Star, Users, Clock } from "lucide-react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { Link } from "react-router-dom";
+import { useGeolocation } from '@/hooks/useGeolocation';
+import { formatPricing } from '@/utils/regionalContent';
 
 interface ToolCardProps {
   tool: {
@@ -20,6 +22,10 @@ interface ToolCardProps {
 }
 
 const ToolCard = ({ tool }: ToolCardProps) => {
+  const { location } = useGeolocation();
+  const region = location?.region || 'US';
+  const displayPricing = formatPricing(tool.pricing, region);
+
   return (
     <article className="tool-card group" itemScope itemType="https://schema.org/SoftwareApplication">
       <Link to={`/tools/${tool.id}`} className="block" itemProp="url">
@@ -86,7 +92,7 @@ const ToolCard = ({ tool }: ToolCardProps) => {
       <div className="mb-6">
         <div className="flex items-center justify-between">
           <span className="text-sm text-muted-foreground">Starting at</span>
-          <span className="font-semibold text-lg">{tool.pricing}</span>
+          <span className="font-semibold text-lg">{displayPricing}</span>
         </div>
       </div>
 
