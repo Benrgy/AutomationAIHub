@@ -71,6 +71,7 @@ export type Database = {
       tools: {
         Row: {
           category: string
+          compliance_tags: string[] | null
           created_at: string
           description: string
           id: string
@@ -78,7 +79,9 @@ export type Database = {
           name: string
           pricing: string
           rating: number
+          regional_features: Json | null
           setup_time: string
+          supported_regions: string[] | null
           trial_available: boolean
           updated_at: string
           users: string
@@ -86,6 +89,7 @@ export type Database = {
         }
         Insert: {
           category: string
+          compliance_tags?: string[] | null
           created_at?: string
           description: string
           id?: string
@@ -93,7 +97,9 @@ export type Database = {
           name: string
           pricing: string
           rating: number
+          regional_features?: Json | null
           setup_time: string
+          supported_regions?: string[] | null
           trial_available?: boolean
           updated_at?: string
           users: string
@@ -101,6 +107,7 @@ export type Database = {
         }
         Update: {
           category?: string
+          compliance_tags?: string[] | null
           created_at?: string
           description?: string
           id?: string
@@ -108,7 +115,9 @@ export type Database = {
           name?: string
           pricing?: string
           rating?: number
+          regional_features?: Json | null
           setup_time?: string
+          supported_regions?: string[] | null
           trial_available?: boolean
           updated_at?: string
           users?: string

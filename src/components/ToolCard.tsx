@@ -4,6 +4,7 @@ import { Badge } from "./ui/badge";
 import { Link } from "react-router-dom";
 import { useGeolocation } from '@/hooks/useGeolocation';
 import { formatPricing } from '@/utils/regionalContent';
+import RegionalBadges from './RegionalBadges';
 
 interface ToolCardProps {
   tool: {
@@ -18,6 +19,9 @@ interface ToolCardProps {
     trialAvailable: boolean;
     setupTime: string;
     website: string;
+    supported_regions?: string[];
+    compliance_tags?: string[];
+    regional_features?: Record<string, any>;
   };
 }
 
@@ -65,9 +69,16 @@ const ToolCard = ({ tool }: ToolCardProps) => {
       </div>
 
       {/* Description */}
-      <p className="text-muted-foreground text-sm leading-relaxed mb-4 line-clamp-3" itemProp="description">
+      <p className="text-muted-foreground text-sm leading-relaxed mb-3 line-clamp-3" itemProp="description">
         {tool.description}
       </p>
+      
+      <RegionalBadges 
+        complianceTags={tool.compliance_tags}
+        regionalFeatures={tool.regional_features}
+        userRegion={location?.region}
+        className="mb-4"
+      />
       <meta itemProp="applicationCategory" content="BusinessApplication" />
       <meta itemProp="operatingSystem" content="Web" />
       <div itemProp="aggregateRating" itemScope itemType="https://schema.org/AggregateRating">

@@ -12,6 +12,9 @@ export interface Tool {
   trialAvailable: boolean;
   setupTime: string;
   website: string;
+  supported_regions?: string[];
+  compliance_tags?: string[];
+  regional_features?: Record<string, any>;
 }
 
 interface UseToolSearchProps {
@@ -19,9 +22,10 @@ interface UseToolSearchProps {
   category?: string;
   searchQuery?: string;
   limit?: number;
+  userRegion?: 'US' | 'UK' | 'CA';
 }
 
-export const useToolSearch = ({ tools, category = "popular", searchQuery = "", limit }: UseToolSearchProps) => {
+export const useToolSearch = ({ tools, category = "popular", searchQuery = "", limit, userRegion }: UseToolSearchProps) => {
   const [filteredTools, setFilteredTools] = useState<Tool[]>(tools);
 
   // Get search suggestions based on current query
@@ -75,8 +79,17 @@ export const useToolSearch = ({ tools, category = "popular", searchQuery = "", l
       });
     }
 
-    // Sort by rating and popularity
+    // Sort by region relevance, rating, and popularity
     filtered.sort((a, b) => {
+      // Prioritize tools that support the user's region
+      if (userRegion) {
+        const aSupportsRegion = a.supported_regions?.includes(userRegion) ?? true;
+        const bSupportsRegion = b.supported_regions?.includes(userRegion) ?? true;
+        if (aSupportsRegion !== bSupportsRegion) {
+          return aSupportsRegion ? -1 : 1;
+        }
+      }
+      
       const ratingDiff = b.rating - a.rating;
       if (Math.abs(ratingDiff) > 0.1) return ratingDiff;
       
