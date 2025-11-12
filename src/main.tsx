@@ -1,6 +1,11 @@
 import { createRoot } from 'react-dom/client'
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { HelmetProvider } from "react-helmet-async";
+import { RegionProvider } from "./contexts/RegionContext.tsx";
 import App from './App.tsx'
 import './index.css'
+
+const queryClient = new QueryClient();
 
 // Debug logging for GitHub Pages deployment
 console.log('🚀 AutomationAIHub: Initializing React app...');
@@ -14,7 +19,15 @@ try {
   }
   
   console.log('✅ Root element found, creating React app...');
-  createRoot(rootElement).render(<App />);
+  createRoot(rootElement).render(
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <RegionProvider>
+          <App />
+        </RegionProvider>
+      </QueryClientProvider>
+    </HelmetProvider>
+  );
   console.log('🎉 React app rendered successfully!');
 } catch (error) {
   console.error('❌ Failed to initialize React app:', error);

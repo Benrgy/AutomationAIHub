@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import ToolCard from "./ToolCard";
 import { useToolSearch } from "@/hooks/useToolSearch";
 import { useTools } from "@/hooks/useTools";
-import { useGeolocation } from "@/hooks/useGeolocation";
+import { useRegion } from "@/contexts/RegionContext";
 import { Loader2 } from "lucide-react";
 
 export interface ToolGridProps {
@@ -14,7 +14,7 @@ export interface ToolGridProps {
 
 const ToolGrid = ({ category = "popular", searchQuery = "", limit, onResultsChange }: ToolGridProps) => {
   const { data: tools, isLoading, error } = useTools();
-  const { location } = useGeolocation();
+  const { region } = useRegion();
 
   // Map category slugs to full category names
   const categoryMap: { [key: string]: string } = {
@@ -36,7 +36,7 @@ const ToolGrid = ({ category = "popular", searchQuery = "", limit, onResultsChan
     category: fullCategoryName,
     searchQuery,
     limit,
-    userRegion: location?.region,
+    userRegion: region,
   });
 
   // Notify parent of results changes

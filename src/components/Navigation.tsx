@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Search, Menu, X, LogOut } from "lucide-react";
 import { Button } from "./ui/button";
 import { useAuth } from "@/hooks/useAuth";
+import { RegionSelector } from "./RegionSelector";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -41,6 +42,7 @@ const Navigation = () => {
 
           {/* Search and Actions */}
           <div className="hidden md:flex items-center space-x-4">
+            <RegionSelector />
             <Button variant="ghost" size="icon" aria-label="Search tools">
               <Search className="h-5 w-5" />
             </Button>
@@ -123,7 +125,12 @@ const Navigation = () => {
               >
                 Submit Tool
               </Link>
-              <div className="flex flex-col space-y-2 pt-4">
+              <div className="flex flex-col space-y-2 pt-4 border-t border-border">
+                <div className="py-2">
+                  <RegionSelector />
+                </div>
+              </div>
+              <div className="flex flex-col space-y-2">
                 {user ? (
                   <>
                     {isAdmin && (
